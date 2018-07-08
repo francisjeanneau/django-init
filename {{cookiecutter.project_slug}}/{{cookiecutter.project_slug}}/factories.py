@@ -9,7 +9,7 @@ class UserFactory(factory.DjangoModelFactory):
     first_name = factory.Faker('first_name')
     last_name = factory.Faker('last_name')
     username = factory.Sequence('John{0}'.format)
-    email = factory.Sequence('john{0}@volontaria.com'.format)
+    email = factory.Sequence('john{0}@example.com'.format)
     password = 'Test123!'
 
     @classmethod
@@ -33,7 +33,7 @@ class AdminFactory(factory.DjangoModelFactory):
     first_name = factory.Faker('first_name')
     last_name = factory.Faker('last_name')
     username = factory.Sequence('Chuck{0}'.format)
-    email = factory.Sequence('chuck{0}@volontaria.com'.format)
+    email = factory.Sequence('chuck{0}@example.com'.format)
     password = 'Test123!'
     is_superuser = True
 
