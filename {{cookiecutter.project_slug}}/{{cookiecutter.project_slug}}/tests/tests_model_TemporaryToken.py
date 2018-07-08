@@ -2,8 +2,8 @@ from rest_framework.test import APIClient
 
 from rest_framework.test import APITestCase
 
-from {{cookiecutter.project_slug}}.models import TemporaryToken
-from {{cookiecutter.project_slug}}.factories import UserFactory
+from ..models import TemporaryToken
+from ..factories import UserFactory
 from django.utils import timezone
 
 
@@ -24,7 +24,7 @@ class TemporaryTokenTests(APITestCase):
             minutes=100
         )
 
-        self.assertEquals(token.expired, False)
+        self.assertEqual(token.expired, False)
 
     def test_expired_property_true(self):
         """
@@ -38,7 +38,7 @@ class TemporaryTokenTests(APITestCase):
 
         # It's already not equal because time is
         # passed since the last line of code
-        self.assertEquals(True, token.expired)
+        self.assertEqual(True, token.expired)
 
     def test_expire_function_true(self):
         """
@@ -53,9 +53,9 @@ class TemporaryTokenTests(APITestCase):
         )
 
         # The token is not expired, 100 minutes remain
-        self.assertEquals(False, token.expired)
+        self.assertEqual(False, token.expired)
 
         token.expire()
 
         # The token is expired because we ask for
-        self.assertEquals(True, token.expired)
+        self.assertEqual(True, token.expired)

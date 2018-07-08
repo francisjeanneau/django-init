@@ -51,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = '{{cookiecutter.project_slug}}.urls'
@@ -84,22 +86,29 @@ DATABASES = {
     }
 }
 
+# Custom user model
+
+AUTH_USER_MODEL = '{{cookiecutter.project_slug}}.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'NumericPasswordValidator',
     },
 ]
 
@@ -156,4 +165,35 @@ REST_FRAMEWORK_TEMPORARY_TOKENS = {
     'MINUTES': 10,
     'RENEW_ON_SUCCESS': True,
     'USE_AUTHENTICATION_BACKENDS': False,
+}
+
+# Activation Token
+
+ACTIVATION_TOKENS = {
+    'MINUTES': 2880,
+}
+
+# Email service configuration.
+# Supported services: SendinBlue.
+
+SETTINGS_IMAILING = {
+    "SERVICE": "SendinBlue",
+    "API_KEY": "example_api_key",
+    "EMAIL_FROM": "admin@example.com",
+    "TEMPLATES": {
+        "CONFIRM_SIGN_UP": "example_template_id",
+        "FORGOT_PASSWORD": "example_template_id",
+    }
+}
+
+# User specific settings
+
+LOCAL_SETTINGS = {
+    'ORGANIZATION': "{{cookiecutter.company_name}}",
+    "EMAIL_SERVICE": False,
+    "AUTO_ACTIVATE_USER": False,
+    "FRONTEND_INTEGRATION": {
+        "ACTIVATION_URL": "example.com/activate?activation_token={% raw %}{{token}}{% endraw %}",
+        "FORGOT_PASSWORD_URL": "example.com/forgot_password?token={% raw %}{{token}}{% endraw %}",
+    },
 }

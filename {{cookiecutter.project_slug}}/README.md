@@ -1,7 +1,5 @@
 {% set is_open_source = cookiecutter.open_source_license != 'Not open source' -%}
 
-# {{ cookiecutter.project_name }}
-
 {% if is_open_source %}
 [![Build Status](https://travis-ci.org/{{ cookiecutter.github_username }}/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.svg?branch=develop)](https://travis-ci.org/{{ cookiecutter.github_username }}/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }})
 {% else %}
@@ -42,7 +40,7 @@ We're going to install and configure the latest develop build of this API.
 First of all, you need to clone the project on your computer with :
 
 ```
-git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}.git
+git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_hyphenated }}.git
 ```
 
 You can now move in the newly created folder:
