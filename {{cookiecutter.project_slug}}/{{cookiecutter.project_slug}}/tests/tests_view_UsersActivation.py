@@ -77,7 +77,9 @@ class UsersActivationTests(APITestCase):
             format='json',
         )
 
-        content = {'detail': '"bad_token" is not a valid activation_token.'}
+        content = {
+            'activation_token': '"bad_token" is not a valid activation_token.'
+        }
         self.assertEqual(json.loads(response.content), content)
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

@@ -192,7 +192,7 @@ class UsersActivation(APIView):
                 format(activation_token)
 
             return Response(
-                {'detail': error},
+                {'activation_token': error},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
@@ -306,7 +306,7 @@ class ChangePassword(APIView):
                 password_validation.validate_password(password=new_password)
             except ValidationError as err:
                 content = {
-                    'detail': err,
+                    'password': err,
                 }
                 return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
@@ -330,7 +330,7 @@ class ChangePassword(APIView):
             error = '{0} is not a valid token.'.format(token)
 
             return Response(
-                {'detail': error},
+                {'token': error},
                 status=status.HTTP_400_BAD_REQUEST
             )
 

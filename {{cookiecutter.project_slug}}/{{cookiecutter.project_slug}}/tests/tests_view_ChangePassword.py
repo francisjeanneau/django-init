@@ -79,7 +79,7 @@ class ChangePasswordTests(APITestCase):
         )
 
         content = {
-            'detail': "test is not a valid token.",
+            'token': "test is not a valid token.",
         }
         self.assertEqual(json.loads(response.content), content)
 
@@ -232,7 +232,7 @@ class ChangePasswordTests(APITestCase):
         )
 
         content = {
-            'detail': [
+            'password': [
                 'This password is too short. '
                 'It must contain at least 8 characters.',
             ],
